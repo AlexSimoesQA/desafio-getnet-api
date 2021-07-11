@@ -1,4 +1,4 @@
-package br.com.getnet.api.newuser.test;
+package br.com.getnet.api.reqres.test;
 
 import org.junit.runner.RunWith;
 
@@ -13,11 +13,11 @@ plugin = {
 "pretty"
 },
 monochrome = true,
-glue = "br.com.getnet.api.newuser",
-features = "src/test/resources/features/Reqres/CT001 - New User.feature",
+glue = "br.com.getnet.api.reqres",
+features = "src/test/resources/features/Reqres/",
 snippets = SnippetType.CAMELCASE
 )
 
-public class NewUserTest extends BaseTest{
+public class ReqresTest extends BaseTest{
 
 }
