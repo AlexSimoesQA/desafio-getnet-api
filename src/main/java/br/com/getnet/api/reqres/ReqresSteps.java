@@ -1,6 +1,8 @@
 package br.com.getnet.api.reqres;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.is;
 
 import br.com.getnet.api.core.Constants;
 import io.cucumber.java.en.Given;
@@ -30,21 +32,35 @@ public class ReqresSteps implements Constants{
 
 	@Then("deve ser retornado {int} created")
 	public void deve_ser_retornado(Integer status) {
-//		Assert.assertEquals(status, when.getStatusCode());
-		when.then().assertThat().statusCode(201).log().all();
+		when
+		.then()
+		.assertThat()
+		.statusCode(201)
+		.log()
+		.all()
+		.body("name", is("Alex"))
+		.body("job", is("QA"))
+		;
 	}
 	
 	@Given("que eu entre com um {string}")
-	public void que_eu_entre_com_um(String string) {
+	public void que_eu_entre_com_um(String string) throws Throwable{
 		given = given()
 	    		.body("{\r\n"
-	    				+ "    \"email\": "+ '"'+string+'"' +",\r\n"
+	    				+ "    \"email\": "+ '"'+string+'"' +"\r\n"
 	    				+ "}");
 	}
 	
 	@Then("deve ser retornado {int} Bad Request")
-	public void deve_ser_retornado_ok(Integer int1) {
-		when.then().assertThat().statusCode(400);
+	public void deve_ser_retornado_badrequest(Integer int1) {
+		when
+		.then()
+		.assertThat()
+		.statusCode(400)
+		.log()
+		.all()
+		.body("error", is("Missing password"))
+		;
 	}
 	
 	@When("eu executar a {string} de metodo Put")
@@ -54,8 +70,17 @@ public class ReqresSteps implements Constants{
 	
 	@Then("deve ser retornado {int} update")
 	public void deve_ser_retornado_update(Integer int1) {
-		when.then().assertThat().statusCode(200).log().all();
+		when
+		.then()
+		.assertThat()
+		.statusCode(200)
+		.log()
+		.all()
+		.body("name", anyOf(is("Alex Simoes"), is("Yanne")))
+		.body("job", anyOf(is("Automator"), is("Dev")))
+		;
 	}
+	
 	
 	@When("eu executar a {string} de metodo Patch")
 	public void eu_executar_a_de_metodo_patch(String string) {

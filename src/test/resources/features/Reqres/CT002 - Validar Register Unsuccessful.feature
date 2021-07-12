@@ -5,5 +5,5 @@ Feature: CT002 - Validar Register Unsuccessful
     Then deve ser retornado <statuscode> Bad Request
 
     Examples: 
-      |email  						   |API  		  |statuscode|
-      |alex.teste@gmail.com  |/register |400			 |
+      |email  						 |API  		  |statuscode|
+      |eve.holt@reqres.in  |/register |400			 |
