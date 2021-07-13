@@ -1,7 +1,7 @@
 Feature: CT001 - Validar New User
   Scenario: Validar criacao de novo usuario
-    Given que eu entre com um "<name>" e "<job>"
-    When eu executar a "<API>" de metodo Post
+    Given que eu entrei com um "name": "<name>" e "job": "<job>"
+    When eu executar a API "<API>" de metodo Post
     Then deve ser retornado <statuscode> created
 
     Examples: 
