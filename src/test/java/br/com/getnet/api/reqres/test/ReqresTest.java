@@ -15,7 +15,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 			 },
 	monochrome = true,
 	glue = "br.com.getnet.api.reqres",
-	features = "src/test/resources/features/Reqres",
+	features = "src/test/resources/features/Reqres/CT008 - Validar List Users.feature",
 	snippets = SnippetType.CAMELCASE
 )
 

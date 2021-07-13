@@ -4,7 +4,7 @@ import io.restassured.http.ContentType;
 
 public interface Constants {
 	
-	String APP_BASE_URL = "https://reqres.in/api";
+	String APP_BASE_URL = "https://reqres.in/api/";
 	Integer APP_PORT = 80;
 	
 	

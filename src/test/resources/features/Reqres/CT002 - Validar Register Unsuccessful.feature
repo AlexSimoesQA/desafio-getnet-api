@@ -6,4 +6,4 @@ Feature: CT002 - Validar Register Unsuccessful
 
     Examples: 
       |email  						 |API  		  |statuscode|
-      |eve.holt@reqres.in  |/register |400			 |
+      |eve.holt@reqres.in  |register  |400			 |

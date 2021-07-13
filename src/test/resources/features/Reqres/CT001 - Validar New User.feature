@@ -5,5 +5,5 @@ Feature: CT001 - Validar New User
     Then deve ser retornado <statuscode> created
 
     Examples: 
-      |name  |job |API  	|statuscode|
-      |Alex  |QA  |/users |201			 |
+      |name  |job |API   |statuscode|
+      |Alex  |QA  |users |201			  |
