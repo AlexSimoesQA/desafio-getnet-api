@@ -16,22 +16,22 @@ public class ReqresSteps extends BaseTest {
 	private Response response;
 	
 	
-	@Given("que eu entrei com um {string}: {string} e {string}: {string}")
-	public void que_eu_entrei_com_um_e(String atributo1, String valor1, String atributo2, String valor2) {
+	@Given("I send {string}: {string} and {string}: {string}")
+	public void i_send_and(String attribute1, String value1, String attribute2, String value2) {
 	    requestSpec = given()
 	    		.body("{\r\n"
-	    				+ "    \""+atributo1+"\": "+ '"'+valor1+'"' +",\r\n"
-	    				+ "    \""+atributo2+"\": "+ '"'+valor2+'"' +"\r\n"
+	    				+ "    \""+attribute1+"\": "+ '"'+value1+'"' +",\r\n"
+	    				+ "    \""+attribute2+"\": "+ '"'+value2+'"' +"\r\n"
 	    				+ "}");
 	}
 
-	@When("eu executar a API {string} de metodo Post")
-	public void eu_executar_a_api_de_metodo_post(String endpoint) {
+	@When("I run a post method api {string}")
+	public void i_run_a_post_method_api(String endpoint) {
 		response = requestSpec.post(endpoint);
 	}
 
-	@Then("deve ser retornado {int} created")
-	public void deve_ser_retornado_created(Integer status) {
+	@Then("Should be returned {int} created")
+	public void should_be_returned_created(Integer status) {
 		response
 		.then()
 		.assertThat()
@@ -43,16 +43,16 @@ public class ReqresSteps extends BaseTest {
 		;
 	}
 	
-	@Given("que eu entrei com um email: {string}")
-	public void que_eu_entre_com_um(String string) throws Throwable{
+	@Given("I send email: {string}")
+	public void i_send_email(String string) {
 		requestSpec = given()
 	    		.body("{\r\n"
 	    				+ "    \"email\": "+ '"'+string+'"' +"\r\n"
 	    				+ "}");
 	}
 	
-	@Then("deve ser retornado {int} Bad Request")
-	public void deve_ser_retornado_badrequest(Integer status) {
+	@Then("Should be returned {int} bad request")
+	public void should_be_returned_bad_request(Integer status) {
 		response
 		.then()
 		.assertThat()
@@ -63,13 +63,13 @@ public class ReqresSteps extends BaseTest {
 		;
 	}
 	
-	@When("eu executar a API {string} de metodo Put")
-	public void eu_executar_a_api_de_metodo_put(String string) {
-		response = requestSpec.put(string);
+	@When("I run a put method api {string}")
+	public void i_run_a_put_method_api(String endpoint) {
+		response = requestSpec.put(endpoint);
 	}
 	
-	@Then("deve ser retornado {int} update")
-	public void deve_ser_retornado_update(Integer status) {
+	@Then("Should be returned {int} update")
+	public void should_be_returned_update(Integer status) {
 		response
 		.then()
 		.assertThat()
@@ -82,13 +82,13 @@ public class ReqresSteps extends BaseTest {
 	}
 	
 	
-	@When("eu executar a API {string} de metodo Patch")
-	public void eu_executar_a_api_de_metodo_patch(String string) {
-		response = requestSpec.patch(string);
+	@When("I run a patch method api {string}")
+	public void i_run_a_patch_method_api(String endpoint) {
+		response = requestSpec.patch(endpoint);
 	}
 	
-	@Then("deve ser retornado {int} ok")
-	public void deve_ser_retornado_ok(Integer status) {
+	@Then("Should be returned {int} ok")
+	public void should_be_returned_ok(Integer status) {
 		response
 		.then()
 		.assertThat()
@@ -98,13 +98,13 @@ public class ReqresSteps extends BaseTest {
 		;
 	}
 	
-	@When("eu executar a API {string} de metodo GET")
-	public void eu_executar_a_api_de_metodo_get(String string) {
-		response = get(string);
+	@When("I run a get method api {string}")
+	public void i_run_a_get_method_api(String endpoint) {
+		response = get(endpoint);
 	}
 	
-	@Then("deve validar a lista de usuarios")
-	public void deve_validar_a_lista_de_usuarios() {
+	@Then("must validade a list of users")
+	public void must_validade_a_list_of_users() {
 		response
 		.then()
 		.assertThat()
@@ -115,6 +115,6 @@ public class ReqresSteps extends BaseTest {
 		.body("data.last_name", contains("Lawson", "Ferguson", "Funke", "Fields", "Edwards", "Howell"))
 		.body("data.email", hasItems("michael.lawson@reqres.in", "lindsay.ferguson@reqres.in", "george.edwards@reqres.in"))
 		;
-	} 
+	}
 
 }
