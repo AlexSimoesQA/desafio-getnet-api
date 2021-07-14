@@ -1,5 +1,5 @@
-Feature: CT001 - Validate New User
-  Scenario: Validate new user creation
+Feature: CT001 - Validate Create User
+  Scenario: Validate create user
     Given I send "name": "<name>" and "job": "<job>"
     When I run a post method api "<API>"
     Then Should be returned <statuscode> created

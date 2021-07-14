@@ -81,7 +81,6 @@ public class ReqresSteps extends BaseTest {
 		;
 	}
 	
-	
 	@When("I run a patch method api {string}")
 	public void i_run_a_patch_method_api(String endpoint) {
 		response = requestSpec.patch(endpoint);
@@ -143,5 +142,78 @@ public class ReqresSteps extends BaseTest {
 		.body("isEmpty()", is(true))
 		;
 	}
+	
+	@Then("must validade a list of resource")
+	public void must_validade_a_list_of_resource() {
+		response
+		.then()
+		.assertThat()
+		.log()
+		.all()
+		.body("page", isA(Integer.class))
+		.body("per_page", is(6))
+		.body("total", is(12))
+		.body("total_pages", is(2))
+		.body("data", hasSize(6))
+		.body("data.id", contains(1, 2, 3, 4, 5, 6))
+		.body("data.name", hasItems("cerulean", "true red", "fuchsia rose", "aqua sky", "blue turquoise", "tigerlily"))
+		.body("data.year", containsInAnyOrder(2000, 2002, 2001, 2004, 2005, 2003))
+		.body("data[3].color", is("#7BC4C4"))
+		.body("data.pantone_value", contains("15-4020", "17-2031", "19-1664", "14-4811", "17-1456", "15-5217"))
+		.body("data.pantone_value", is(not(empty())))
+		;
+	}
 
+	@Then("must validade a single resource")
+	public void must_validade_a_single_resource() {
+		response
+		.then()
+		.assertThat()
+		.log()
+		.all()
+		.body("data", is(not(empty())))
+		.body("data.id", is(2))
+		.body("data.name", is("fuchsia rose"))
+		.body("data.year", is(2001))
+		.body("data.color", is("#C74375"))
+		.body("data.pantone_value", is("17-2031"))
+		;
+	}
+	
+	@When("I run a delete method api {string}")
+	public void i_run_a_delete_method_api(String endpoint) {
+		response = delete(endpoint);
+	}
+
+	@Then("Should be returned {int} delete")
+	public void should_be_returned_delete(Integer status) {
+		response
+		.then()
+		.assertThat()
+		.statusCode(status)
+		.log()
+		.all()
+		;
+	}
+	
+	@Then("must validate list after delayed response")
+	public void must_validate_list_after_delayed_response() {
+		response
+		.then()
+		.assertThat()
+		.log()
+		.all()
+		.body("page", isA(Integer.class))
+		.body("per_page", is(6))
+		.body("total", is(12))
+		.body("total_pages", is(2))
+		.body("data", hasSize(6))
+		.body("data.id", contains(1, 2, 3, 4, 5, 6))
+		.body("data.first_name", hasItems("George", "Emma", "Janet", "Eve", "Charles", "Tracey"))
+		.body("data.last_name", containsInAnyOrder("Ramos", "Morris", "Holt", "Wong", "Weaver", "Bluth"))
+		.body("data.avatar", hasItems("https://reqres.in/img/faces/1-image.jpg", "https://reqres.in/img/faces/2-image.jpg"))
+		.body("data.email", hasItem("tracey.ramos@reqres.in"))
+		;
+	}
+	
 }

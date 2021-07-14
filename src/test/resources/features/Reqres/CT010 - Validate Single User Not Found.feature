@@ -1,5 +1,5 @@
-Feature: CT009 - Validate Single User
-  Scenario: Validate single user
+Feature: CT010 - Validate Single User Not Found
+  Scenario: Validate single user not found
     When I run a get method api "<API>"
     Then Should be returned <statuscode> not found
 
