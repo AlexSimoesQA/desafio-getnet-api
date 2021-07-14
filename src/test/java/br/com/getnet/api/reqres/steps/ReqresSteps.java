@@ -44,10 +44,10 @@ public class ReqresSteps extends BaseTest {
 	}
 	
 	@Given("I send email: {string}")
-	public void i_send_email(String string) {
+	public void i_send_email(String value) {
 		requestSpec = given()
 	    		.body("{\r\n"
-	    				+ "    \"email\": "+ '"'+string+'"' +"\r\n"
+	    				+ "    \"email\": "+ '"'+value+'"' +"\r\n"
 	    				+ "}");
 	}
 	
@@ -114,6 +114,33 @@ public class ReqresSteps extends BaseTest {
 		.body("data[0].first_name", is("Michael"))
 		.body("data.last_name", contains("Lawson", "Ferguson", "Funke", "Fields", "Edwards", "Howell"))
 		.body("data.email", hasItems("michael.lawson@reqres.in", "lindsay.ferguson@reqres.in", "george.edwards@reqres.in"))
+		;
+	}
+	
+	@Then("must validade a single user")
+	public void must_validade_a_single_user() {
+		response
+		.then()
+		.assertThat()
+		.log()
+		.all()
+		.body("data.id", is(2))
+		.body("data.email", is("janet.weaver@reqres.in"))
+		.body("data.first_name", is("Janet"))
+		.body("data.last_name", is("Weaver"))
+		.body("data.avatar", is("https://reqres.in/img/faces/2-image.jpg"))
+		;
+	}
+	
+	@Then("Should be returned {int} not found")
+	public void should_be_returned_not_found(Integer status) {
+		response
+		.then()
+		.assertThat()
+		.statusCode(status)
+		.log()
+		.all()
+		.body("isEmpty()", is(true))
 		;
 	}
 
