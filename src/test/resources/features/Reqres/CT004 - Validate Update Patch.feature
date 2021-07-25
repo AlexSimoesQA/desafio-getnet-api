@@ -1,5 +1,5 @@
 Feature: CT004 - Validate Update Patch
-  Scenario: Validate name and job update using patch method
+  Scenario Outline: Validate name and job update using patch method
     Given I send "name": "<name>" and "job": "<job>"
     When I run a patch method api "<API>"
     Then Should be returned <statuscode> update
